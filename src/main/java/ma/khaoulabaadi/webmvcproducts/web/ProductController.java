@@ -5,6 +5,7 @@ import ma.khaoulabaadi.webmvcproducts.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; // ✅ CORRECTION IMPORTANTE
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,4 +25,10 @@ public class ProductController {
         model.addAttribute("listProducts", products);
         return "products";
     }
+    @GetMapping(value="/deleteProduct")
+    public String delete(@RequestParam(name = "id") Long id){
+        productRepository.deleteById(id);
+        return "redirect:/index";
+    }
+
 }
